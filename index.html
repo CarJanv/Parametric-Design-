@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Parametric Design Example</title>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+    }
+    canvas {
+        display: block;
+    }
+</style>
+</head>
+<body>
+<canvas id="myCanvas"></canvas>
+<script>
+    const canvas = document.getElementById('myCanvas');
+    const ctx = canvas.getContext('2d');
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const numPoints = 100;
+    const radius = 200;
+    const centerX = canvas.width / 2;
+    const centerY = canvas.height / 2;
+    const speed = 0.01;
+
+    function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.beginPath();
+
+        for (let i = 0; i < numPoints; i++) {
+            const angle = i * (Math.PI * 2) / numPoints;
+            const x = centerX + Math.cos(angle + speed) * radius;
+            const y = centerY + Math.sin(angle + speed) * radius;
+            ctx.lineTo(x, y);
+        }
+
+        ctx.closePath();
+        ctx.stroke();
+
+        requestAnimationFrame(draw);
+    }
+
+    draw();
+</script>
+</body>
+</html>

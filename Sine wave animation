@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Parametric Design Example</title>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+    }
+    canvas {
+        display: block;
+    }
+</style>
+</head>
+<body>
+<canvas id="myCanvas"></canvas>
+<script>
+    const canvas = document.getElementById('myCanvas');
+    const ctx = canvas.getContext('2d');
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const frequency = 0.03;
+    const amplitude = 100;
+    const speed = 0.1;
+    let time = 0;
+
+    function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        ctx.beginPath();
+        ctx.moveTo(0, canvas.height / 2);
+
+        for (let x = 0; x < canvas.width; x++) {
+            const y = canvas.height / 2 + Math.sin(x * frequency + time) * amplitude;
+            ctx.lineTo(x, y);
+        }
+
+        ctx.strokeStyle = 'black';
+        ctx.stroke();
+
+        time += speed;
+
+        requestAnimationFrame(draw);
+    }
+
+    draw();
+</script>
+</body>
+</html>

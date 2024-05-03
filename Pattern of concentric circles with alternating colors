@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Parametric Design Example</title>
+</head>
+<body>
+<svg id="mySVG" width="800" height="600"></svg>
+<script>
+    const svg = document.getElementById('mySVG');
+
+    const numCircles = 10;
+    const baseRadius = 50;
+    const color1 = 'blue';
+    const color2 = 'green';
+
+    for (let i = 0; i < numCircles; i++) {
+        const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        const radius = baseRadius + i * 10;
+        const color = i % 2 === 0 ? color1 : color2;
+
+        circle.setAttribute('cx', 400);
+        circle.setAttribute('cy', 300);
+        circle.setAttribute('r', radius);
+        circle.setAttribute('fill', color);
+
+        svg.appendChild(circle);
+    }
+</script>
+</body>
+</html>
